@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Scratch Mod Menu
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.1
 // @description  aka. Scratch Userscript
 // @author       soundbeat3d1
 // @match        https://scratch.mit.edu/*
@@ -9,17 +9,19 @@
 // @grant        none
 // ==/UserScript==
 
-// Create Mod Menu Div part 1
+// Create Mod Menu div and script part 1
 const modmenu1 = document.createElement('div')
-modmenu1.innerHTML = `<p style="color: white; text-align: center;">Scratch Mod Menu</p><button onclick="location.href=location.href">Refresh Scratch</button><button onclick="destroynow();">Destroy Scratch (Client)</button>
-<p style="color: white;">For This Project:</p><button onclick="setUnlimited();">Unlimited ❤ & ⭐ (Client)</button><br>`
-document.body.appendChild(modmenu1);
-
-// Create Mod Menu Div part 1 (Scripts)
+modmenu1.innerHTML = `<style>.test {position: absolute; top: 50px; right: 0; opacity: 0.5;} .test:hover {opacity: 1;}</style><div class="test"><button onclick="github();">Thank You For Using Scratch Mod Menu!</button></div>
+<p style="color: white; text-align: center;">Scratch Mod Menu</p><button onclick="location.href=location.href">Refresh Scratch</button><button onclick="destroynow();">Destroy Scratch (Client)</button><p style="color: white;">For This Project:</p>
+<button onclick="setUnlimited();">Unlimited ❤ & ⭐ (Client)</button><br><button onclick="showEmojis();">Show Scratch Emojis</button>`
 const modmenu1scripts = document.createElement('script')
-modmenu1scripts.innerHTML = `function destroynow() {const destroyelement = document.getElementById('app'); destroyelement.parentNode.removeChild(destroyelement);}; function setUnlimited() {const loves = document.getElementsByClassName('project-loves');
-const lovesfavorited = document.getElementsByClassName('project-loves loved'); const favorites = document.getElementsByClassName('project-favorites'); const favoritesfavorited = document.getElementsByClassName('project-favorites favorited');
-loves[0].innerHTML = '999999999'; favorites[0].innerHTML = '999999999'; lovesfavorited[0].innerHTML = '999999999'; favoritesfavorited[0].innerHTML = '999999999';};`
+modmenu1scripts.innerHTML = `const SCREEN_WIDTH = window.screen.availWidth; const SCREEN_HEIGHT = window.screen.availHeight; function destroynow() {const destroyelement = document.getElementById('app');
+destroyelement.parentNode.removeChild(destroyelement);}; function setUnlimited() {const loves = document.getElementsByClassName('project-loves'); const lovesfavorited = document.getElementsByClassName('project-loves loved');
+const favorites = document.getElementsByClassName('project-favorites'); const favoritesfavorited = document.getElementsByClassName('project-favorites favorited'); loves[0].innerHTML = '999999999'; favorites[0].innerHTML = '999999999';
+lovesfavorited[0].innerHTML = '999999999'; favoritesfavorited[0].innerHTML = '999999999';}; function github() { const opts = 'width=' + Math.floor(SCREEN_WIDTH / 2) + ',height=' + Math.floor(SCREEN_HEIGHT / 1.5);
+window.open('https://github.com/soundbeat3d1/Scratch-Userscript-Beta/', '', opts);}; function showEmojis() {alert('_meow_ , _gobo_ , _waffle_ , _taco_ , _sushi_ , _apple_ , _broccoli_ , _pizza_ , _candycorn_ , _10mil_ , _map_ , _camera_ , _suitcase_');
+alert("_compass_ , _binoculars_ , _cupcake_ , _:)_ , _:D_ , _B)_ , _:P_ , _;P_ , _:'P_ , _P:_ , _:3_ , _<3_ , _**_ , _:))_ , _:D<_ | New emojis (hated by most people): _pride_ , _blm_");};`
+document.body.appendChild(modmenu1);
 document.body.appendChild(modmenu1scripts);
 
 // Create Mod Menu Div part 2
@@ -92,6 +94,12 @@ if (location.href == 'https://scratch.mit.edu/projects/105500895') {
     document.body.appendChild(geometrydash)
 }
 
+// Warning about this is not supporting to the old version of scratch
+const warning = document.createElement('p')
+warning.textContent = "Warning: This userscript is not supported to the old version of scratch!"
+warning.style.color = 'black'
+warning.style.textAlign = 'center'
+document.body.appendChild(warning)
 
 // (Old) Version v0.1 Scratch Mod Menu
 /*
